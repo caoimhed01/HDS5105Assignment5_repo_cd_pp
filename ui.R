@@ -15,14 +15,15 @@ sidebar<-dashboardSidebar(width=250,sidebarSearchForm(textId="searchText", butto
     menuItem("Participants", tabName = "Participants", icon=icon("users")), 
     menuItem("Baseline Characteristics", tabName = "Baseline_Characteristics", icon=icon("heart-pulse")))
   )
-body<-dashboardBody(
+body<-dashboardBody(fluidRow(infoBox("Men", value="70%", icon=icon("mars"), fill=TRUE)), 
+                    infoBoxOutput("progressBox"),infoBoxOutput("approvalBox"),
     tags$head(tags$style(HTML('.main-header .logo{
                               font-family: "Georgia", Times, "Times New Roman", serif;
                               font-weight: bold;
                               font-size:32px;}'))),
-    tabItems(tabItem(tabName = "Home", 
-    plotOutput("Proportion _of_Participants in Trial", height=250),
-    box(title="Select Patients Age:", sliderInput("slider","Patients Age:", min=10, max=100, value=45))
+    tabItems(tabItem(tabName = "Home",
+                     fluidRow(box(title = "Proportion  of Participants in Trial",background="fuchsia", solidheader=TRUE,width = 7, plotOutput("Proportion _of_Participants"), height=250)),
+    box(title="Select Patients Age:", background="black", sliderInput("slider","Patients Age:", min=10, max=100, value=45))
 ), 
 tabItem(tabName = "Participants", h2("participants of the trial information")), 
 tabItem(tabName = "Baseline_Characteristics", h2("Baseline Characteristics content"))))
