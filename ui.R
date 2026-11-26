@@ -6,17 +6,24 @@ library(shiny)
 library(shinythemes)
 library(bslib)
 library(ggplot2)
+library(shinydashboard)
 
 #start on UI#
 
-ui<- fluidPage(theme=shinytheme("united"),
-               titlePanel("The Digoxin Trial"),
-               sidebarLayout(sidebarPanel(selectInput(inputId="Treatment Group", label="Select Participant Treatment Group:", choices=c("Placebo", "Digoxin"), 
-                                                                   multiple=FALSE),
-                                          radioButtons(inputId="Sex",
-                                                                                               label="Select Participant Sex:", 
-                                                                                               choices=c("Female", "Male"))),mainPanel(
-               tabsetPanel(tabPanel("Tab 1", "This is the first tab"), 
-                           tabPanel("Tab 2", "This is the second tab"), 
-                           tabPanel("Tab 3", "This is the third tab"), 
-                           tabPanel("Tab 4", "This is the fourth tab")))))
+ui<- dashboardPage(skin="black",
+  dashboardHeader(title = "The Digoxin Trial", titleWidth = 400), 
+  dashboardSidebar(width=400,sidebarMenu(
+    menuItem("Trial Overview", tabName ="Overview", icon=icon("home")), 
+    menuItem("Widgets", tabName = "Widgets", icon=icon("th")))
+  ),
+  dashboardBody(
+    tags$head(tags$style(HTML('.main-header .logo{
+                              font-family: "Georgia", Times, "Times New Roman", serif;
+                              font-weight: bold;
+                              font-size:32px;}'))),
+    tabItems(tabItem(tabName = "Overview", 
+    fluidRow(box(title="Proportion of Participants in Trial",
+    plotOutput("Proportion _of_Participants in Trial", height=250)),
+    box(title="Select Patients Age:", sliderInput("slider","Patients Age:", min=10, max=100, value=45))
+)))
+))
