@@ -11,8 +11,8 @@ library(shinydashboard)
 #start on UI#
 
 ui<- dashboardPage(skin="black",
-  dashboardHeader(title = "The Digoxin Trial", titleWidth = 400), 
-  dashboardSidebar(width=400,sidebarMenu(
+  dashboardHeader(title = "Digoxin Trial", titleWidth = 250), 
+  dashboardSidebar(width=250,sidebarMenu(
     menuItem("Trial Overview", tabName ="Overview", icon=icon("home")), 
     menuItem("Widgets", tabName = "Widgets", icon=icon("th")))
   ),
