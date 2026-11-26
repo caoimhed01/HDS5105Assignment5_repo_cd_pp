@@ -11,7 +11,11 @@ library(ggplot2)
 
 ui<- fluidPage(theme=shinytheme("united"),
                titlePanel("The Digoxin Trial"),
-               sidebarLayout(sidebarPanel("Sidebar"),mainPanel(
+               sidebarLayout(sidebarPanel(selectInput(inputId="Treatment Group", label="Select Participant Treatment Group:", choices=c("Placebo", "Digoxin"), 
+                                                                   multiple=FALSE),
+                                          radioButtons(inputId="Sex",
+                                                                                               label="Select Participant Sex:", 
+                                                                                               choices=c("Female", "Male"))),mainPanel(
                tabsetPanel(tabPanel("Tab 1", "This is the first tab"), 
                            tabPanel("Tab 2", "This is the second tab"), 
                            tabPanel("Tab 3", "This is the third tab"), 
