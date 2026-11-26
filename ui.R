@@ -12,7 +12,7 @@ library(shinydashboard)
 
 sidebar<-dashboardSidebar(width=250,sidebarSearchForm(textId="searchText", buttonId ="searchButton", label="Search..."),sidebarMenu(
     menuItem("Home", tabName ="Home", icon=icon("home")), 
-    menuItem("Participants", tabName = "Widgets", icon=icon("users")), 
+    menuItem("Participants", tabName = "Participants", icon=icon("users")), 
     menuItem("Baseline Characteristics", tabName = "Baseline_Characteristics", icon=icon("heart-pulse")))
   )
 body<-dashboardBody(
@@ -21,11 +21,10 @@ body<-dashboardBody(
                               font-weight: bold;
                               font-size:32px;}'))),
     tabItems(tabItem(tabName = "Home", 
-    fluidRow(box(title="Proportion of Participants in Trial",
-    plotOutput("Proportion _of_Participants in Trial", height=250)),
+    plotOutput("Proportion _of_Participants in Trial", height=250),
     box(title="Select Patients Age:", sliderInput("slider","Patients Age:", min=10, max=100, value=45))
-)), 
-tabItem(tabName = "Widgets", h2("participants of the trial information")), 
+), 
+tabItem(tabName = "Participants", h2("participants of the trial information")), 
 tabItem(tabName = "Baseline_Characteristics", h2("Baseline Characteristics content"))))
 
 dashboardPage(skin="black",
